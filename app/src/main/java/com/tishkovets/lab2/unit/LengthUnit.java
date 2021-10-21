@@ -1,6 +1,8 @@
-package com.tishkovets.lab2;
+package com.tishkovets.lab2.unit;
 
-public enum LengthUnit implements Unit {
+import com.tishkovets.lab2.R;
+
+public enum LengthUnit implements UnitType {
     METER(1, R.plurals.meters_plurals),
     INCH(2.205, R.plurals.inches_plurals),
     FOOT(35.274, R.plurals.feet_plurals),

@@ -1,6 +1,8 @@
-package com.tishkovets.lab2;
+package com.tishkovets.lab2.unit;
 
-public enum VolumeUnit implements Unit {
+import com.tishkovets.lab2.R;
+
+public enum VolumeUnit implements UnitType {
     LITER(1, R.plurals.liters_plurals),
     GALLON(0.264172, R.plurals.gallons_plurals),
     QUART(1.05669, R.plurals.quarts_plurals),

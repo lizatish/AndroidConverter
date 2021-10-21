@@ -3,21 +3,21 @@
     <plurals name="liters_plurals">
         <item quantity="one">%d литр</item>
         <item quantity="few">%d литра</item>
-        <item quantity="many">%d литров</item>
+        <item quantity="other">%d литров</item>
     </plurals>
     <plurals name="gallons_plurals">
         <item quantity="one">%d галлон</item>
         <item quantity="few">%d галлона</item>
-        <item quantity="many">%d галлонов</item>
+        <item quantity="other">%d галлонов</item>
     </plurals>
     <plurals name="quarts_plurals">
         <item quantity="one">%d кварт</item>
         <item quantity="few">%d кварта</item>
-        <item quantity="many">%d квартов</item>
+        <item quantity="other">%d квартов</item>
     </plurals>
     <plurals name="pints_plurals">
         <item quantity="one">%d пинта</item>
         <item quantity="few">%d пинты</item>
-        <item quantity="many">%d пинт</item>
+        <item quantity="other">%d пинт</item>
     </plurals>
 </resources>

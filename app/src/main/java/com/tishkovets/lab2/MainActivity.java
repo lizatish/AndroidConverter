@@ -11,8 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.tishkovets.lab2.unit.UnitType;
+import com.tishkovets.lab2.validation.Validator;
+
 import java.util.List;
 
 
@@ -27,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
     Button button2;
     Button button3;
 
-    Unit button1Type;
-    Unit button2Type;
-    Unit button3Type;
+    UnitType button1Type;
+    UnitType button2Type;
+    UnitType button3Type;
 
-    Unit currentType;
+    UnitType currentType;
     double currentValue;
 
     public MainActivity() {
@@ -72,25 +73,28 @@ public class MainActivity extends AppCompatActivity {
         String text = inputText.getText().toString();
         String[] parts = text.split(" ");
 
-        if (parts.length == 2 && validator.isDouble(parts[0])) {
+        if (parts.length == 2 && validator.isInt(parts[0])) {
 
-            double value = Double.parseDouble(parts[0]);
-            Unit type = validator.getUnitOrNull(parts[1]);
+            int value = Integer.parseInt(parts[0]);
+            UnitType unitType = validator.getUnitOrNull(getResources(), text, value);
 
-            if (type != null) {
+            if (unitType != null) {
                 this.currentValue = value;
-                this.currentType = type;
-
-                List<Unit> targetList = this.currentType.getEnumConstants();
-                targetList.remove(this.currentType);
-
-                this.enableButtons(targetList.get(0), targetList.get(1), targetList.get(2));
+                this.currentType = unitType;
+                this.setButtonsValues();
             } else {
                 this.disableButtons();
             }
         } else {
             this.disableButtons();
         }
+    }
+
+    public void setButtonsValues() {
+        List<UnitType> unitTypesWithoutCurrent = this.currentType.getEnumConstants();
+        unitTypesWithoutCurrent.remove(this.currentType);
+        this.enableButtons(unitTypesWithoutCurrent.get(0), unitTypesWithoutCurrent.get(1),
+                unitTypesWithoutCurrent.get(2));
     }
 
     private void disableButtons() {
@@ -109,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         this.button3.setText("...");
     }
 
-    private void enableButtons(Unit button1Type, Unit button2Type, Unit button3Type) {
+    private void enableButtons(UnitType button1Type, UnitType button2Type, UnitType button3Type) {
         this.button1.setEnabled(true);
         this.button2.setEnabled(true);
         this.button3.setEnabled(true);
@@ -142,12 +146,4 @@ public class MainActivity extends AppCompatActivity {
         double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
     }
-
-//    public void temp() {
-//
-//        for (int i = 0; i < 12; i++) {
-//            String followersCount = getResources().getQuantityString(R.plurals.feet_number, i, i);
-//            Log.d("PluralsTest", followersCount);
-//        }
-//    }
 }

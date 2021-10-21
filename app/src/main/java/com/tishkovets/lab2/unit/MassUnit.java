@@ -1,6 +1,8 @@
-package com.tishkovets.lab2;
+package com.tishkovets.lab2.unit;
 
-public enum MassUnit implements Unit {
+import com.tishkovets.lab2.R;
+
+public enum MassUnit implements UnitType {
     KILOGRAM(1, R.plurals.kilograms_plurals),
     POUND(2.205, R.plurals.pounds_plurals),
     OUNCE(35.274, R.plurals.ounce_plurals),
