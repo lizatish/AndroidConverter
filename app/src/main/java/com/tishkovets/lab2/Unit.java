@@ -1,5 +1,14 @@
 package com.tishkovets.lab2;
 
-public interface Unit<T> {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public interface Unit {
     double value = 1;
+
+    default List<Unit> getEnumConstants() {
+        Unit[] values = this.getClass().getEnumConstants();
+        return new ArrayList<>(Arrays.asList(values));
+    }
 }

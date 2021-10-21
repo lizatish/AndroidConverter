@@ -6,7 +6,7 @@ public class UnitConverter {
     public UnitConverter() {
     }
 
-    public double convert(Unit<?> inputType, Unit<?> outputType, double value){
+    public double convert(Unit inputType, Unit outputType, double value){
         return value / inputType.value * outputType.value;
     }
 }

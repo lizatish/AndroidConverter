@@ -21,7 +21,7 @@ public class Validator {
     private static final List<String> validationQuartsValues = Arrays.asList("кварт", "кварта", "квартов");
     private static final List<String> validationPintsValues = Arrays.asList("пинта", "пинты", "пинт");
 
-    private final Map<Unit<?>, List<String>> units = new HashMap<>();
+    private final Map<Unit, List<String>> units = new HashMap<>();
 
 
     public Validator() {
@@ -49,9 +49,9 @@ public class Validator {
         return result;
     }
 
-    public Unit<?> getUnitOrNull(String value) {
-        Unit<?> result = null;
-        for (Map.Entry<Unit<?>, List<String>> pair : units.entrySet()) {
+    public Unit getUnitOrNull(String value) {
+        Unit result = null;
+        for (Map.Entry<Unit, List<String>> pair : units.entrySet()) {
             List<String> validationWords = pair.getValue();
             if (validationWords.contains(value)) {
                 result = pair.getKey();

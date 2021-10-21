@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     Button button2;
     Button button3;
 
-    Unit<?> button1Type;
-    Unit<?> button2Type;
-    Unit<?> button3Type;
+    Unit button1Type;
+    Unit button2Type;
+    Unit button3Type;
 
-    Unit<?> currentType;
+    Unit currentType;
     double currentValue;
 
     public MainActivity() {
@@ -74,16 +74,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (parts.length == 2 && validator.isDouble(parts[0])) {
 
-            this.currentType = validator.getUnitOrNull(parts[1]);
-            this.currentValue = Double.parseDouble(parts[0]);
+            double value = Double.parseDouble(parts[0]);
+            Unit type = validator.getUnitOrNull(parts[1]);
 
-            if (this.currentType == null) {
-                this.disableButtons();
-            } else {
-                Unit<?>[] values = this.currentType.getClass().getEnumConstants();
-                List<Unit<?>> targetList = new ArrayList<>(Arrays.asList(values));
+            if (type != null) {
+                this.currentValue = value;
+                this.currentType = type;
+
+                List<Unit> targetList = this.currentType.getEnumConstants();
                 targetList.remove(this.currentType);
+
                 this.enableButtons(targetList.get(0), targetList.get(1), targetList.get(2));
+            } else {
+                this.disableButtons();
             }
         } else {
             this.disableButtons();
@@ -98,13 +101,15 @@ public class MainActivity extends AppCompatActivity {
         this.button1Type = null;
         this.button2Type = null;
         this.button3Type = null;
+        this.currentValue = 0;
+        this.currentType = null;
 
         this.button1.setText("...");
         this.button2.setText("...");
         this.button3.setText("...");
     }
 
-    private void enableButtons(Unit<?> button1Type, Unit<?> button2Type, Unit<?> button3Type) {
+    private void enableButtons(Unit button1Type, Unit button2Type, Unit button3Type) {
         this.button1.setEnabled(true);
         this.button2.setEnabled(true);
         this.button3.setEnabled(true);
