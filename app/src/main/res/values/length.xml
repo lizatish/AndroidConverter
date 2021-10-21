@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="meters_plurals">
+        <item quantity="one">%d метр</item>
+        <item quantity="few">%d метра</item>
+        <item quantity="many">%d метров</item>
+    </plurals>
+    <plurals name="inches_plurals">
+        <item quantity="one">%d дюйм</item>
+        <item quantity="few">%d дюйма</item>
+        <item quantity="many">%d дюймов</item>
+    </plurals>
+    <plurals name="feet_plurals">
+        <item quantity="one">%d фут</item>
+        <item quantity="few">%d фута</item>
+        <item quantity="many">%d футов</item>
+    </plurals>
+    <plurals name="yards_plurals">
+        <item quantity="one">%d ярд</item>
+        <item quantity="few">%d ярда</item>
+        <item quantity="many">%d ярдов</item>
+    </plurals>
+</resources>

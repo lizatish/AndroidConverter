@@ -125,21 +125,29 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.button1Type, this.currentType, this.currentValue);
+        double convertValue = unitConverter.convert(this.currentType, this.button1Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
 
     }
 
     @SuppressLint("SetTextI18n")
     public void button2_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.button2Type, this.currentType, this.currentValue);
+        double convertValue = unitConverter.convert(this.currentType, this.button2Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
 
     }
 
     @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.button3Type, this.currentType, this.currentValue);
+        double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
     }
+
+//    public void temp() {
+//
+//        for (int i = 0; i < 12; i++) {
+//            String followersCount = getResources().getQuantityString(R.plurals.feet_number, i, i);
+//            Log.d("PluralsTest", followersCount);
+//        }
+//    }
 }

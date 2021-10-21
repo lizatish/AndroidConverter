@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="kilograms_plurals">
+        <item quantity="one">%d килограмм</item>
+        <item quantity="few">%d килограмма</item>
+        <item quantity="many">%d килограммов</item>
+    </plurals>
+    <plurals name="pounds_plurals">
+        <item quantity="one">%d фунт</item>
+        <item quantity="few">%d фунта</item>
+        <item quantity="many">%d фунтов</item>
+    </plurals>
+    <plurals name="groans_plurals">
+        <item quantity="one">%d стона</item>
+        <item quantity="few">%d стоны</item>
+        <item quantity="many">%d стон</item>
+    </plurals>
+    <plurals name="ounce_plurals">
+        <item quantity="one">%d унция</item>
+        <item quantity="few">%d унции</item>
+        <item quantity="many">%d унций</item>
+    </plurals>
+</resources>

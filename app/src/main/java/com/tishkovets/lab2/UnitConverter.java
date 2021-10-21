@@ -7,6 +7,6 @@ public class UnitConverter {
     }
 
     public double convert(Unit inputType, Unit outputType, double value){
-        return value / inputType.value * outputType.value;
+        return value / inputType.getKoeff() * outputType.getKoeff();
     }
 }
