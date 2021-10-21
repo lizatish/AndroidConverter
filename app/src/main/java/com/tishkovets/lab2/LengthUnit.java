@@ -1,6 +1,6 @@
 package com.tishkovets.lab2;
 
-public enum LengthUnit implements Unit{
+public enum LengthUnit implements Unit {
     METER(1),
     INCH(2.205),
     FOOT(35.274),

@@ -1,6 +1,6 @@
 package com.tishkovets.lab2;
 
-public enum VolumeUnit implements Unit{
+public enum VolumeUnit implements Unit {
     LITER(1),
     GALLON(0.264172),
     QUART(1.05669),

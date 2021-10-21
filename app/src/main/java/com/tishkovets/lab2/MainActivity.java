@@ -1,5 +1,6 @@
 package com.tishkovets.lab2;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
     Button button2;
     Button button3;
 
-    Unit button1Type;
-    Unit button2Type;
-    Unit button3Type;
+    Unit<?> button1Type;
+    Unit<?> button2Type;
+    Unit<?> button3Type;
+
+    Unit<?> currentType;
+    double currentValue;
 
     public MainActivity() {
         this.unitConverter = new UnitConverter();
@@ -54,43 +58,36 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 outputText.setText(inputText.getText().toString());
                 validate();
-                // you an call or do what you want with your EditText here
-
-                // yourEditText...
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
         });
-    }
-
-
-    public void button1_OnClick(View view) {
-        this.validate();
     }
 
     private void validate() {
         String text = inputText.getText().toString();
         String[] parts = text.split(" ");
+
         if (parts.length == 2 && validator.isDouble(parts[0])) {
-            Unit unitType = validator.isUnitOrNull(parts[1]);
-            if (unitType == null) {
+
+            this.currentType = validator.getUnitOrNull(parts[1]);
+            this.currentValue = Double.parseDouble(parts[0]);
+
+            if (this.currentType == null) {
                 this.disableButtons();
             } else {
-                Unit[] values = unitType.getClass().getEnumConstants();
-                List<Unit> targetList = new ArrayList<>(Arrays.asList(values));
-                targetList.remove(unitType);
+                Unit<?>[] values = this.currentType.getClass().getEnumConstants();
+                List<Unit<?>> targetList = new ArrayList<>(Arrays.asList(values));
+                targetList.remove(this.currentType);
                 this.enableButtons(targetList.get(0), targetList.get(1), targetList.get(2));
             }
-
         } else {
             this.disableButtons();
         }
-
     }
 
     private void disableButtons() {
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         this.button3.setText("...");
     }
 
-    private void enableButtons(Unit button1Type, Unit button2Type, Unit button3Type) {
+    private void enableButtons(Unit<?> button1Type, Unit<?> button2Type, Unit<?> button3Type) {
         this.button1.setEnabled(true);
         this.button2.setEnabled(true);
         this.button3.setEnabled(true);
@@ -121,9 +118,23 @@ public class MainActivity extends AppCompatActivity {
         this.button3.setText(button3Type.toString());
     }
 
-    public void button2_OnClick(View view) {
+    @SuppressLint("SetTextI18n")
+    public void button1_OnClick(View view) {
+        double convertValue = unitConverter.convert(this.button1Type, this.currentType, this.currentValue);
+        this.outputText.setText(Double.toString(convertValue));
+
     }
 
+    @SuppressLint("SetTextI18n")
+    public void button2_OnClick(View view) {
+        double convertValue = unitConverter.convert(this.button2Type, this.currentType, this.currentValue);
+        this.outputText.setText(Double.toString(convertValue));
+
+    }
+
+    @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
+        double convertValue = unitConverter.convert(this.button3Type, this.currentType, this.currentValue);
+        this.outputText.setText(Double.toString(convertValue));
     }
 }

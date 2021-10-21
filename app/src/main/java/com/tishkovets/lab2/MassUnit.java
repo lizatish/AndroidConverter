@@ -1,6 +1,6 @@
 package com.tishkovets.lab2;
 
-public enum MassUnit implements Unit{
+public enum MassUnit implements Unit {
     KILOGRAM(1),
     POUND(2.205),
     OUNCE(35.274),
