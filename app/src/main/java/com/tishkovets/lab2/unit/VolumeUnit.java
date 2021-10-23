@@ -16,6 +16,20 @@ public enum VolumeUnit implements UnitType {
         this.plural = plural;
     }
 
+    @Override
+    public String toString() {
+        switch (this) {
+            case GALLON:
+                return "в галлоны";
+            case QUART:
+                return "в кварты";
+            case PINT:
+                return "в пинты";
+            default:
+                return "в литры";
+        }
+    }
+
     public int getPlural() {
         return plural;
     }

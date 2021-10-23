@@ -16,6 +16,20 @@ public enum MassUnit implements UnitType {
         this.plural = plural;
     }
 
+    @Override
+    public String toString() {
+        switch (this) {
+            case POUND:
+                return "в фунты";
+            case OUNCE:
+                return "в унции";
+            case GROAN:
+                return "в стоны";
+            default:
+                return "в килограммы";
+        }
+    }
+
     public int getPlural() {
         return plural;
     }

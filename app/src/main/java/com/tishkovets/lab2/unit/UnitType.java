@@ -14,4 +14,5 @@ public interface UnitType {
     double getKoeff();
 
     int getPlural();
+
 }

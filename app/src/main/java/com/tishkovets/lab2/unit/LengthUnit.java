@@ -16,6 +16,20 @@ public enum LengthUnit implements UnitType {
         this.plural = plural;
     }
 
+    @Override
+    public String toString() {
+        switch (this) {
+            case INCH:
+                return "в дюймы";
+            case FOOT:
+                return "в футы";
+            case YARD:
+                return "в ярды";
+            default:
+                return "в метры";
+        }
+    }
+
     public int getPlural() {
         return plural;
     }
