@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="liters_plurals">
-        <item quantity="one">%d литр</item>
-        <item quantity="few">%d литра</item>
-        <item quantity="other">%d литров</item>
+        <item quantity="one">%s литр</item>
+        <item quantity="few">%s литра</item>
+        <item quantity="other">%s литров</item>
     </plurals>
     <plurals name="gallons_plurals">
-        <item quantity="one">%d галлон</item>
-        <item quantity="few">%d галлона</item>
-        <item quantity="other">%d галлонов</item>
+        <item quantity="one">%s галлон</item>
+        <item quantity="few">%s галлона</item>
+        <item quantity="other">%s галлонов</item>
     </plurals>
     <plurals name="quarts_plurals">
-        <item quantity="one">%d кварт</item>
-        <item quantity="few">%d кварта</item>
-        <item quantity="other">%d квартов</item>
+        <item quantity="one">%s кварт</item>
+        <item quantity="few">%s кварта</item>
+        <item quantity="other">%s квартов</item>
     </plurals>
     <plurals name="pints_plurals">
-        <item quantity="one">%d пинта</item>
-        <item quantity="few">%d пинты</item>
-        <item quantity="other">%d пинт</item>
+        <item quantity="one">%s пинта</item>
+        <item quantity="few">%s пинты</item>
+        <item quantity="other">%s пинт</item>
     </plurals>
 </resources>

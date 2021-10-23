@@ -13,4 +13,12 @@ public class TextGetter {
     public static String getErrorText() {
         return "ОШИБКА!\n\n" + TextGetter.getStartText();
     }
+
+    public static String getOutputText(String inputVStr, double outputStr) {
+        return inputVStr + " это:\n" + outputStr;
+    }
+
+    public static String getDouble(double val) {
+        return String.format("%1$,.4f", val);
+    }
 }
