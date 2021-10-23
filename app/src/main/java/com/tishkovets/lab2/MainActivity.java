@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     public void button3_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
-        String result = getResources().getQuantityString(this.currentType.getPlural(), (int) convertValue, (int) convertValue);
+        String result = getResources().getQuantityString(this.button3Type.getPlural(), (int) convertValue, (int) convertValue);
         this.outputText.setText(result);
     }
 }
