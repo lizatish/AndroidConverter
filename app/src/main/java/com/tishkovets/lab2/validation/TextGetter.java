@@ -1,5 +1,7 @@
 package com.tishkovets.lab2.validation;
 
+import android.widget.EditText;
+
 public class TextGetter {
 
     public static String getStartText() {
@@ -14,8 +16,8 @@ public class TextGetter {
         return "ОШИБКА!\n\n" + TextGetter.getStartText();
     }
 
-    public static String getOutputText(String inputVStr, double outputStr) {
-        return inputVStr + " это:\n" + outputStr;
+    public static String getOutputText(EditText inputVStr, String outputStr) {
+        return inputVStr.getText().toString() + " это:\n" + outputStr;
     }
 
     public static String getDouble(double val) {

@@ -46,6 +46,12 @@ public class Validator {
         }
         return null;
     }
+
+    public String getStringOutput(Resources resource, UnitType unitType, double convertValue){
+        String doubleToStringOutputVal = TextGetter.getDouble(convertValue);
+        return resource.getQuantityString(unitType.getPlural(), (int) convertValue, doubleToStringOutputVal);
+    }
+
 }
 
 

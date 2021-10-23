@@ -15,8 +15,6 @@ import com.tishkovets.lab2.unit.UnitType;
 import com.tishkovets.lab2.validation.TextGetter;
 import com.tishkovets.lab2.validation.Validator;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 
@@ -135,25 +133,21 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button1Type, this.currentValue);
-        String doubleToStringVal =  TextGetter.getDouble(convertValue);
-        String result = getResources().getQuantityString(this.button1Type.getPlural(), (int) convertValue, doubleToStringVal);
-        this.outputText.setText(result);
+        String result = validator.getStringOutput(getResources(), this.button1Type, convertValue);
+        this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 
     @SuppressLint("SetTextI18n")
     public void button2_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button2Type, this.currentValue);
-        String doubleToStringVal = TextGetter.getDouble(convertValue);
-        String result = getResources().getQuantityString(this.button2Type.getPlural(), (int) convertValue, doubleToStringVal);
-        this.outputText.setText(result);
-//        this.outputText.setText(TextGetter.getOutputText(, result));
+        String result = validator.getStringOutput(getResources(), this.button2Type, convertValue);
+        this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 
     @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
-        String doubleToStringVal =  TextGetter.getDouble(convertValue);
-        String result = getResources().getQuantityString(this.button3Type.getPlural(), (int) convertValue, doubleToStringVal);
-        this.outputText.setText(result);
+        String result = validator.getStringOutput(getResources(), this.button3Type, convertValue);
+        this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 }
