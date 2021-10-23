@@ -130,20 +130,23 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button1Type, this.currentValue);
-        this.outputText.setText(Double.toString(convertValue));
-
+        String result = getResources().getQuantityString(this.button1Type.getPlural(), (int) convertValue, (int)convertValue);
+        this.outputText.setText(result);
     }
 
     @SuppressLint("SetTextI18n")
     public void button2_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button2Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
-
+        String result = getResources().getQuantityString(this.button2Type.getPlural(), (int) convertValue, (int)convertValue);
+        this.outputText.setText(result);
     }
 
     @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
+        String result = getResources().getQuantityString(this.currentType.getPlural(), (int) convertValue, (int)convertValue);
+        this.outputText.setText(result);
     }
 }
