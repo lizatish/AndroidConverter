@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     UnitType button3Type;
 
     public MainActivity() {
-        this.unitConverter = new UnitConverter();
+        this.unitConverter = UnitConverter.getInstance();
     }
 
     @Override
