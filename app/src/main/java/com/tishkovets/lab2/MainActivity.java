@@ -21,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private final UnitConverter unitConverter;
-    private final Validator validator;
+    private Unit currentUnit;
 
     EditText inputText;
     TextView outputText;
@@ -34,12 +34,8 @@ public class MainActivity extends AppCompatActivity {
     UnitType button2Type;
     UnitType button3Type;
 
-    UnitType currentType;
-    double currentValue;
-
     public MainActivity() {
         this.unitConverter = new UnitConverter();
-        this.validator = new Validator();
     }
 
     @Override
@@ -74,14 +70,13 @@ public class MainActivity extends AppCompatActivity {
         String text = inputText.getText().toString();
         String[] parts = text.split(" ");
 
-        if (parts.length == 2 && validator.isInt(parts[0])) {
+        if (parts.length == 2 && Validator.isInt(parts[0])) {
 
             int value = Integer.parseInt(parts[0]);
-            UnitType unitType = validator.getUnitOrNull(getResources(), text, value);
+            Unit unit = Unit.fromString(getResources(), text, value);
 
-            if (unitType != null) {
-                this.currentValue = value;
-                this.currentType = unitType;
+            if (unit != null) {
+                this.currentUnit = unit;
                 this.setButtonsValues();
                 this.outputText.setHint("");
             } else {
@@ -95,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setButtonsValues() {
-        List<UnitType> unitTypesWithoutCurrent = this.currentType.getEnumConstants();
-        unitTypesWithoutCurrent.remove(this.currentType);
+        List<UnitType> unitTypesWithoutCurrent = this.currentUnit.getUnitType().getEnumConstants();
+        unitTypesWithoutCurrent.remove(this.currentUnit.getUnitType());
         this.enableButtons(unitTypesWithoutCurrent.get(0), unitTypesWithoutCurrent.get(1),
                 unitTypesWithoutCurrent.get(2));
     }
@@ -109,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         this.button1Type = null;
         this.button2Type = null;
         this.button3Type = null;
-        this.currentValue = 0;
-        this.currentType = null;
+
+        this.currentUnit = null;
 
         this.button1.setText("...");
         this.button2.setText("...");
@@ -133,22 +128,23 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.currentType, this.button1Type, this.currentValue);
-        String result = validator.getStringOutput(getResources(), this.button1Type, convertValue);
+        Unit outputUnit = unitConverter.convert(this.currentUnit, this.button1Type);
+        String result = outputUnit.getStringOutput(getResources());
         this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 
     @SuppressLint("SetTextI18n")
     public void button2_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.currentType, this.button2Type, this.currentValue);
-        String result = validator.getStringOutput(getResources(), this.button2Type, convertValue);
+        Unit outputUnit = unitConverter.convert(this.currentUnit, this.button2Type);
+
+        String result = outputUnit.getStringOutput(getResources());
         this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 
     @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
-        double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
-        String result = validator.getStringOutput(getResources(), this.button3Type, convertValue);
+        Unit outputUnit = unitConverter.convert(this.currentUnit, this.button3Type);
+        String result = outputUnit.getStringOutput(getResources());
         this.outputText.setText(TextGetter.getOutputText(inputText, result));
     }
 }

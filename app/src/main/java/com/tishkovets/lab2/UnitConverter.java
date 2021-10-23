@@ -8,7 +8,8 @@ public class UnitConverter {
     public UnitConverter() {
     }
 
-    public double convert(UnitType inputType, UnitType outputType, double value){
-        return value / inputType.getKoeff() * outputType.getKoeff();
+    public Unit convert(Unit inputType, UnitType outputType){
+        double resValue =  inputType.getValue() / inputType.getUnitType().getKoeff() * outputType.getKoeff();
+        return new Unit(outputType, resValue);
     }
 }
