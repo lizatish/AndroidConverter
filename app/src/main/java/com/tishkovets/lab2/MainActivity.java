@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 this.currentValue = value;
                 this.currentType = unitType;
                 this.setButtonsValues();
+                this.outputText.setHint("");
             } else {
                 this.disableButtons();
                 this.outputText.setHint(TextGetter.getErrorText());
