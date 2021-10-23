@@ -17,6 +17,7 @@ import com.tishkovets.lab2.validation.TextGetter;
 import com.tishkovets.lab2.validation.Validator;
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validate() {
-        String text = inputText.getText().toString();
+        String text = inputText.getText().toString().toLowerCase(Locale.ROOT);
         String[] parts = text.split(" ");
 
         if (parts.length == 2 && Validator.isInt(parts[0])) {
@@ -82,10 +83,12 @@ public class MainActivity extends AppCompatActivity {
                 this.outputText.setHint("");
             } else {
                 this.disableButtons();
+                this.outputText.setText("");
                 this.outputText.setHint(TextGetter.getErrorText());
             }
         } else {
             this.disableButtons();
+            this.outputText.setText("");
             this.outputText.setHint(TextGetter.getErrorText());
         }
     }
@@ -130,22 +133,33 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
         Unit outputUnit = unitConverter.convert(this.currentUnit, this.button1Type);
-        String result = outputUnit.getStringOutput(getResources());
-        this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        if (outputUnit != null) {
+            String result = outputUnit.getStringOutput(getResources());
+            this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        } else {
+            this.outputText.setHint(TextGetter.getErrorText());
+        }
     }
 
     @SuppressLint("SetTextI18n")
     public void button2_OnClick(View view) {
         Unit outputUnit = unitConverter.convert(this.currentUnit, this.button2Type);
-
-        String result = outputUnit.getStringOutput(getResources());
-        this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        if (outputUnit != null) {
+            String result = outputUnit.getStringOutput(getResources());
+            this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        } else {
+            this.outputText.setHint(TextGetter.getErrorText());
+        }
     }
 
     @SuppressLint("SetTextI18n")
     public void button3_OnClick(View view) {
         Unit outputUnit = unitConverter.convert(this.currentUnit, this.button3Type);
-        String result = outputUnit.getStringOutput(getResources());
-        this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        if (outputUnit != null) {
+            String result = outputUnit.getStringOutput(getResources());
+            this.outputText.setText(TextGetter.getOutputText(inputText, result));
+        } else {
+            this.outputText.setHint(TextGetter.getErrorText());
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.tishkovets.lab2.validation;
 
 import android.widget.EditText;
 
+import java.util.Locale;
+
 public class TextGetter {
 
     public static String getStartText() {
@@ -17,7 +19,7 @@ public class TextGetter {
     }
 
     public static String getOutputText(EditText inputVStr, String outputStr) {
-        return inputVStr.getText().toString() + " это:\n" + outputStr;
+        return inputVStr.getText().toString().toLowerCase(Locale.ROOT) + " это:\n" + outputStr;
     }
 
     public static String getDouble(double val) {

@@ -8,13 +8,17 @@ public class UnitConverter {
     private UnitConverter() {
     }
 
-    public Unit convert(Unit inputType, UnitType outputType){
-        double resValue =  inputType.getValue() / inputType.getUnitType().getKoeff() * outputType.getKoeff();
+    public Unit convert(Unit inputUnit, UnitType outputType) {
+
+        if (inputUnit.getUnitType().getClass() != outputType.getClass()) {
+            return null;
+        }
+
+        double resValue = inputUnit.getValue() / inputUnit.getUnitType().getKoeff() * outputType.getKoeff();
         return new Unit(outputType, resValue);
     }
 
-    public static UnitConverter getInstance()
-    {
+    public static UnitConverter getInstance() {
         if (instance == null)
             instance = new UnitConverter();
 
