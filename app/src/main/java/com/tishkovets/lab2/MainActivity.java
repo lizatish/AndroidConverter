@@ -12,7 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tishkovets.lab2.unit.UnitType;
+import com.tishkovets.lab2.validation.TextGetter;
 import com.tishkovets.lab2.validation.Validator;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final UnitConverter unitConverter;
     private final Validator validator;
+
     EditText inputText;
     TextView outputText;
 
@@ -45,19 +49,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button1 = findViewById(R.id.button1);
-        button2 = findViewById(R.id.button2);
-        button3 = findViewById(R.id.button3);
-
+        this.button1 = findViewById(R.id.button1);
+        this.button2 = findViewById(R.id.button2);
+        this.button3 = findViewById(R.id.button3);
         this.disableButtons();
 
-        inputText = findViewById(R.id.inputText);
-        outputText = findViewById(R.id.outputText);
+        this.outputText = findViewById(R.id.outputText);
+        this.outputText.setHint(TextGetter.getStartText());
 
+        inputText = findViewById(R.id.inputText);
         inputText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                outputText.setText(inputText.getText().toString());
                 validate();
             }
 
@@ -84,9 +87,11 @@ public class MainActivity extends AppCompatActivity {
                 this.setButtonsValues();
             } else {
                 this.disableButtons();
+                this.outputText.setHint(TextGetter.getErrorText());
             }
         } else {
             this.disableButtons();
+            this.outputText.setHint(TextGetter.getErrorText());
         }
     }
 
@@ -130,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void button1_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button1Type, this.currentValue);
-        String result = getResources().getQuantityString(this.button1Type.getPlural(), (int) convertValue, (int)convertValue);
+        String result = getResources().getQuantityString(this.button1Type.getPlural(), (int) convertValue, (int) convertValue);
         this.outputText.setText(result);
     }
 
@@ -138,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     public void button2_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button2Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
-        String result = getResources().getQuantityString(this.button2Type.getPlural(), (int) convertValue, (int)convertValue);
+        String result = getResources().getQuantityString(this.button2Type.getPlural(), (int) convertValue, (int) convertValue);
         this.outputText.setText(result);
     }
 
@@ -146,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     public void button3_OnClick(View view) {
         double convertValue = unitConverter.convert(this.currentType, this.button3Type, this.currentValue);
         this.outputText.setText(Double.toString(convertValue));
-        String result = getResources().getQuantityString(this.currentType.getPlural(), (int) convertValue, (int)convertValue);
+        String result = getResources().getQuantityString(this.currentType.getPlural(), (int) convertValue, (int) convertValue);
         this.outputText.setText(result);
     }
 }
