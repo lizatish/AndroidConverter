@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,16 +53,16 @@ public class MainActivity extends AppCompatActivity {
         this.outputText.setHint(TextGetter.getStartText());
 
         inputText = findViewById(R.id.inputText);
-        inputText.addTextChangedListener(new TextWatcher() {
+        inputText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-            public void afterTextChanged(Editable s) {
-                validate();
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validate();
+                    return true;
+                }
+                return false;
             }
         });
     }
